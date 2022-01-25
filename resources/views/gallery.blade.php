@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+@extends('layouts.main')
+
+@section('container')
+    <h1>Halaman Gallery</h1>
+@endsection
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,4 +14,4 @@
 <body>
     <h1> Halaman Gallery </h1>
 </body>
-</html>
+</html>-->
