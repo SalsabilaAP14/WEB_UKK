@@ -1,25 +1,32 @@
 @extends('layouts.app')
-@section('title', 'Noviana | Dashboard')
+@section('title', 'Caca  | Dashboard')
 @section('content')
 <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="overview-wrap">
-                                    <h2 class="title-1">overview</h2>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="input-group mb-3">
+                <form action="/home/search" method="GET">
+                  <input type="search" class="form-control" placeholder="Cari judul" name="search">
+              </form>
+              <button class="btn btn-btn-primary" type="button">Search</button>
+              </div>
+              <div class="row g-2">  
+                @foreach ($contacts as $index => $contact )
+                <div class="col-6">
+                  <div class="p-3">
+                    <div class="card" style="width: 18rem;">
+                      <img src="{{ asset('coverbuku/'.$contact->cover) }}" class="card-img-top" alt="">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ $contact->judul}}</h5>
+                        <p class="card-text">{{ $contact->deskripsi}}</p>
+                        <a href="/detail/{{$contact->id}}" class="btn btn-primary m-t-10">Lihat Detail</a>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
+                @endforeach
+        </div>
+        {{ $contacts->links() }}
+    </div>            
+</div>
 @endsection

@@ -8,28 +8,14 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{ route ('home')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
                         </li>
-                        <li>
+                        <li class="has-sub">
                             <a href="{{ route ('contacts.index')}}">
-                                <i class="fas fa-chart-bar"></i>Data Contact Us</a>
+                                <i class="fas fa-table"></i>Data Buku</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
@@ -98,7 +84,7 @@
                                     <a href="typo.html">Typography</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
             </div>

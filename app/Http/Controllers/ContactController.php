@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BookExport;
+use App\Exports\ContactExport;
+
 
 class ContactController extends Controller
 {
@@ -12,9 +16,13 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(2);
+        if($request->has('search')){
+            $contacts = Contact::where('judul', 'LIKE', '%' .$request->search. '%')->paginate(5);
+        }else{
+            $contacts = Contact::paginate(5);
+        }
         return view('admin/contacts/index', compact('contacts'));
     }
 
@@ -40,9 +48,12 @@ class ContactController extends Controller
     {
         //dd($request->all());
         $contact = Contact::create($request->all());
-        $contact->save();
-
-        return redirect()->route('contacts.create');
+        if($request->hasFile('cover')){
+            $request->file('cover')->move('coverbuku/', $request->file('cover')->getClientOriginalName());
+            $contact->cover = $request->file('cover')->getClientOriginalName();
+            $contact->save();
+        }
+        return redirect()->route('contacts.index');
 
     }
 
@@ -98,4 +109,9 @@ class ContactController extends Controller
 
         return redirect()->route('contacts.index');
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new ContactExport, 'Contact.xlsx');
+	}
 }
